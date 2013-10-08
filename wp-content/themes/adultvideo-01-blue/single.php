@@ -15,7 +15,8 @@
             <div class="single-post">
                         
                 <?php the_content(); ?>
-                
+                <?php echo get_post_meta($post->ID,'videoid',true);?>
+
                 <div class="clear"></div>
                         
                 <div class="video-category">Category: <?php the_category(', ') ?></div>

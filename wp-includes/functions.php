@@ -7,6 +7,8 @@
 
 require( ABSPATH . WPINC . '/option.php' );
 
+/*update_option('siteurl','boris/wordpress/');
+update_option('home','boris/wordpress/');*/
 /**
  * Converts given date string into a different format.
  *

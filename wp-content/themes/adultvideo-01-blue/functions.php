@@ -5,7 +5,9 @@
 function short_title($after = '', $length) {
     $mytitle = get_the_title();
     if ( strlen($mytitle) > $length ) {
-    $mytitle = substr($mytitle,0,$length);
+	//$mytitle = utf8_encode($mytitle);
+    $mytitle = mb_substr($mytitle,0,$length);
+	//$mytitle = utf8_decode($mytitle);
     echo rtrim($mytitle).$after;
     } else {
     echo $mytitle;

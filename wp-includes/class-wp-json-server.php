@@ -32,7 +32,7 @@ class WP_JSON_Server {
 	 * Does the endpoint accept raw JSON entities?
 	 */
 	const ACCEPT_RAW = 64;
-	const ACCEPT_JSON = 0;//128;
+	const ACCEPT_JSON = 128;
 
 	/**
 	 * Should we hide this endpoint from the index?
