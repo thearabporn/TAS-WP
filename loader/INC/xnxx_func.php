@@ -67,7 +67,7 @@ function EngToArabic($text) {
     require_once('MicrosoftTranslator.class.php');	
 	$toLanguage = "ar";
 	$fromLanguage = "en";
-	$key = 'gy5DFtM5SBKW9EOzKd7Dly6bJcRExh0WE0mq8olau6w';
+	$key = '{MYACCOUNTCODE}';
 	$msTranslator = new MicrosoftTranslator($key);
 	$msTranslator->translate($fromLanguage, $toLanguage, $text);
 	$result =objectToArray($msTranslator->response);
