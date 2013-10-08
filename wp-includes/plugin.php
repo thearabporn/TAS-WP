@@ -165,7 +165,7 @@ function apply_filters($tag, $value) {
 
 	if ( empty($args) )
 		$args = func_get_args();
-
+		
 	do {
 		foreach( (array) current($wp_filter[$tag]) as $the_ )
 			if ( !is_null($the_['function']) ){

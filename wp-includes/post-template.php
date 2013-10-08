@@ -162,12 +162,19 @@ function get_the_guid( $id = 0 ) {
  * @param bool $strip_teaser Optional. Strip teaser content before the more text. Default is false.
  */
 function the_content( $more_link_text = null, $strip_teaser = false) {
+	
 	$content = get_the_content( $more_link_text, $strip_teaser );
+	$content = add_video().$content;
 	$content = apply_filters( 'the_content', $content );
 	$content = str_replace( ']]>', ']]&gt;', $content );
+		
 	echo $content;
 }
-
+function add_video(){
+	$str = '[wposflv src='.'http://boris/wordpress/loader/getflv.php?p='.get_post_meta( get_the_ID(), 'videoid',true).' width=400 height=325 title="My Birthday"]'."\n";
+	//http://boris/wordpress/loader/getflv.php?p='.get_post_meta( get_the_ID(), 'videoid',true)
+	return $str;
+}
 /**
  * Retrieve the post content.
  *
@@ -181,7 +188,7 @@ function get_the_content( $more_link_text = null, $strip_teaser = false ) {
 	global $page, $more, $preview, $pages, $multipage;
 
 	$post = get_post();
-
+	
 	if ( null === $more_link_text )
 		$more_link_text = __( '(more&hellip;)' );
 
@@ -196,6 +203,7 @@ function get_the_content( $more_link_text = null, $strip_teaser = false ) {
 		$page = count( $pages ); // give them the highest numbered page that DOES exist
 
 	$content = $pages[$page - 1];
+	
 	if ( preg_match( '/<!--more(.*?)?-->/', $content, $matches ) ) {
 		$content = explode( $matches[0], $content, 2 );
 		if ( ! empty( $matches[1] ) && ! empty( $more_link_text ) )
@@ -205,7 +213,7 @@ function get_the_content( $more_link_text = null, $strip_teaser = false ) {
 	} else {
 		$content = array( $content );
 	}
-
+	
 	if ( false !== strpos( $post->post_content, '<!--noteaser-->' ) && ( ! $multipage || $page == 1 ) )
 		$strip_teaser = true;
 
